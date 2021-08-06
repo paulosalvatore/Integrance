@@ -1,26 +1,55 @@
 import { Injectable } from '@nestjs/common';
 import { CreateColaboradorDto } from './dto/create-colaborador.dto';
 import { UpdateColaboradorDto } from './dto/update-colaborador.dto';
+import { Colaborador } from './entities/colaborador.entity';
 
 @Injectable()
 export class ColaboradoresService {
+  // Modificador de acesso: private/public
+  // Private: só quem está na classe acessa
+  // Public: qualquer código externo também acessa
+
+  private readonly data: Colaborador[] = [
+    {
+      id: 1,
+      nome: 'Paulo Salvatore',
+      idade: 99,
+    },
+  ];
+
   create(createColaboradorDto: CreateColaboradorDto) {
-    return 'This action adds a new colaboradore';
+    const item: Colaborador = {
+      id: this.data.length + 1,
+      ...createColaboradorDto,
+    };
+
+    this.data.push(item);
+
+    return item;
   }
 
   findAll() {
-    return `This action returns all colaboradores`;
+    return this.data.filter(Boolean);
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} colaboradore`;
+    return this.data.find((item) => item.id == id);
   }
 
   update(id: number, updateColaboradorDto: UpdateColaboradorDto) {
-    return `This action updates a #${id} colaboradore`;
+    const index = this.data.findIndex((item) => item.id == id);
+
+    this.data[index] = {
+      ...this.data[index],
+      ...updateColaboradorDto,
+    };
+
+    return this.data[index];
   }
 
   remove(id: number) {
-    return `This action removes a #${id} colaboradore`;
+    const index = this.data.findIndex((item) => item.id == id);
+
+    delete this.data[index];
   }
 }

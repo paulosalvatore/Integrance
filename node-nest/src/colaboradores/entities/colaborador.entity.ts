@@ -1,1 +1,7 @@
-export class Colaborador {}
+export class Colaborador {
+  id?: number;
+
+  nome: string;
+
+  idade?: number;
+}

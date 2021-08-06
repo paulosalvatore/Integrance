@@ -6,6 +6,8 @@ import {
   Patch,
   Param,
   Delete,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 import { ColaboradoresService } from './colaboradores.service';
 import { CreateColaboradorDto } from './dto/create-colaborador.dto';
@@ -26,20 +28,21 @@ export class ColaboradoresController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.colaboradoresService.findOne(+id);
+  findOne(@Param('id') id: number) {
+    return this.colaboradoresService.findOne(id);
   }
 
   @Patch(':id')
   update(
-    @Param('id') id: string,
+    @Param('id') id: number,
     @Body() updateColaboradorDto: UpdateColaboradorDto,
   ) {
-    return this.colaboradoresService.update(+id, updateColaboradorDto);
+    return this.colaboradoresService.update(id, updateColaboradorDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.colaboradoresService.remove(+id);
+  @HttpCode(HttpStatus.NO_CONTENT)
+  remove(@Param('id') id: number) {
+    return this.colaboradoresService.remove(id);
   }
 }
