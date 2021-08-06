@@ -1,7 +1,5 @@
 # Fullstack
 
-Minha sugestão de stack de tecnologia:
-
 - Node JS
 - JavaScript
   - Boas práticas
@@ -107,9 +105,31 @@ Podemos ignorar o TypeScript com:
 
 **Tempo de execução/run:** JavaScript
 
+### Nest CLI
+
+Gerar `resources` no Nest.
+
+```bash
+nest g resource colaboradores
+```
+
+
+
 ## Atalhos
 
 `Ctrl + .`: Auto complete no VSCode
+
+### Dicionário
+
+Trailling comma
+
+DTO = Data Transfer Object
+
+DAO = Data Access Object
+
+Separation of Concern
+
+**Boiler plate:** todo código que precisamos escrever e manter, mas não necessariamente é um código que nós estamos concebendo. Geralmente algum código de framework ou algo básico pra implementar uma funcionalidade especifica.
 
 ## Dúvidas
 
