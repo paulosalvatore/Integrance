@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { EntityNotFoundError } from 'src/errors/entity-not-found.error';
 import { CreateColaboradorDto } from './dto/create-colaborador.dto';
 import { UpdateColaboradorDto } from './dto/update-colaborador.dto';
 import { Colaborador } from './entities/colaborador.entity';
@@ -33,11 +34,13 @@ export class ColaboradoresService {
   }
 
   findOne(id: number) {
-    return this.data.find((item) => item.id == id);
+    const index = this.findIndexById(id);
+
+    return this.data[index];
   }
 
   update(id: number, updateColaboradorDto: UpdateColaboradorDto) {
-    const index = this.data.findIndex((item) => item.id == id);
+    const index = this.findIndexById(id);
 
     this.data[index] = {
       ...this.data[index],
@@ -48,8 +51,18 @@ export class ColaboradoresService {
   }
 
   remove(id: number) {
-    const index = this.data.findIndex((item) => item.id == id);
+    const index = this.findIndexById(id);
 
     delete this.data[index];
+  }
+
+  private findIndexById(id: number) {
+    const index = this.data.findIndex((item) => item?.id == id);
+
+    if (!this.data[index]) {
+      throw new EntityNotFoundError('Colaborador não encontrado.');
+    }
+
+    return index;
   }
 }
