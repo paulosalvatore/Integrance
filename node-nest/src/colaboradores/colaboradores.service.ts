@@ -4,7 +4,7 @@ import { EntityNotFoundError } from 'src/errors/entity-not-found.error';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateColaboradorDto } from './dto/create-colaborador.dto';
 import { UpdateColaboradorDto } from './dto/update-colaborador.dto';
-import { Colaborador } from './entities/colaborador.entity';
+// import { Colaborador } from './entities/colaborador.entity';
 
 @Injectable()
 export class ColaboradoresService {
@@ -14,13 +14,13 @@ export class ColaboradoresService {
 
   constructor(private readonly prisma: PrismaService) {}
 
-  private readonly data: Colaborador[] = [
+  /*private readonly data: Colaborador[] = [
     {
       id: 1,
       nome: 'Paulo Salvatore - Local',
       idade: 10,
     },
-  ];
+  ];*/
 
   create(createColaboradorDto: CreateColaboradorDto) {
     const data: Prisma.ColaboradoresCreateInput = {
@@ -85,7 +85,7 @@ export class ColaboradoresService {
     delete this.data[index];*/
   }
 
-  private findIndexById(id: number) {
+  /*private findIndexById(id: number) {
     const index = this.data.findIndex((item) => item?.id == id);
 
     if (!this.data[index]) {
@@ -93,5 +93,5 @@ export class ColaboradoresService {
     }
 
     return index;
-  }
+  }*/
 }
