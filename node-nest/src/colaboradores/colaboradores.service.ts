@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { EntityNotFoundError } from 'src/errors/entity-not-found.error';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateColaboradorDto } from './dto/create-colaborador.dto';
 import { UpdateColaboradorDto } from './dto/update-colaborador.dto';
 import { Colaborador } from './entities/colaborador.entity';
@@ -9,6 +10,8 @@ export class ColaboradoresService {
   // Modificador de acesso: private/public
   // Private: só quem está na classe acessa
   // Public: qualquer código externo também acessa
+
+  constructor(private readonly prisma: PrismaService) {}
 
   private readonly data: Colaborador[] = [
     {
