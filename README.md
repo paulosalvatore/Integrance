@@ -113,7 +113,45 @@ Gerar `resources` no Nest.
 nest g resource colaboradores
 ```
 
+## Prisma
 
+### Instalar
+
+```bash
+npm i -D prisma
+```
+
+### Migrate
+
+```bash
+npx prisma migrate dev --name init
+```
+
+### Error Handling
+
+**Referência de tratamento:** https://www.prisma.io/docs/concepts/components/prisma-client/handling-exceptions-and-errors
+
+```typescript
+import { PrismaClient, Prisma } from '@prisma/client'
+
+const client = new PrismaClient()
+
+try {
+  await client.user.create({ data: { email: 'alreadyexisting@mail.com' } })
+} catch (e) {
+  if (e instanceof Prisma.PrismaClientKnownRequestError) {
+    // The .code property can be accessed in a type-safe manner
+    if (e.code === 'P2002') {
+      console.log(
+        'There is a unique constraint violation, a new user cannot be created with this email'
+      )
+    }
+  }
+  throw e
+}
+```
+
+**Referência da API (estrutura dos erros):** https://www.prisma.io/docs/reference/api-reference/error-reference
 
 ## Atalhos
 
