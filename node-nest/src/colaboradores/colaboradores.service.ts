@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { EntityNotFoundError } from 'src/errors/entity-not-found.error';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateColaboradorDto } from './dto/create-colaborador.dto';
@@ -66,10 +67,12 @@ export class ColaboradoresService {
       ...updateColaboradorDto,
     };
 
-    return this.prisma.colaboradores.update({
-      where: { id },
-      data,
-    });
+    return this.prisma.colaboradores
+      .update({
+        where: { id },
+        data,
+      })
+      .catch(this.handleDatabaseErrors);
 
     /*const index = this.findIndexById(id);
 
@@ -82,13 +85,23 @@ export class ColaboradoresService {
   }
 
   remove(id: number) {
-    return this.prisma.colaboradores.delete({
-      where: { id },
-    });
+    return this.prisma.colaboradores
+      .delete({
+        where: { id },
+      })
+      .catch(this.handleDatabaseErrors);
 
     /*const index = this.findIndexById(id);
 
     delete this.data[index];*/
+  }
+
+  private handleDatabaseErrors(error: PrismaClientKnownRequestError) {
+    if (error.code === 'P2025') {
+      throw new EntityNotFoundError('Colaborador não encontrado');
+    }
+
+    throw error;
   }
 
   /*private findIndexById(id: number) {
