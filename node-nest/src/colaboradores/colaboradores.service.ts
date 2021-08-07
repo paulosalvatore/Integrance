@@ -45,10 +45,16 @@ export class ColaboradoresService {
     // return this.data.filter(Boolean);
   }
 
-  findOne(id: number) {
-    return this.prisma.colaboradores.findUnique({
+  async findOne(id: number) {
+    const data = await this.prisma.colaboradores.findUnique({
       where: { id },
     });
+
+    if (!data) {
+      throw new EntityNotFoundError('Colaborador não encontrado.');
+    }
+
+    return data;
 
     // const index = this.findIndexById(id);
 
