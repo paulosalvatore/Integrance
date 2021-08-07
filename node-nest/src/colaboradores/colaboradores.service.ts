@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { EntityNotFoundError } from 'src/errors/entity-not-found.error';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateColaboradorDto } from './dto/create-colaborador.dto';
@@ -22,14 +23,20 @@ export class ColaboradoresService {
   ];
 
   create(createColaboradorDto: CreateColaboradorDto) {
-    const item: Colaborador = {
+    const data: Prisma.ColaboradoresCreateInput = {
+      ...createColaboradorDto,
+    };
+
+    return this.prisma.colaboradores.create({ data });
+
+    /*const item: Colaborador = {
       id: this.data.length + 1,
       ...createColaboradorDto,
     };
 
     this.data.push(item);
 
-    return item;
+    return item;*/
   }
 
   findAll() {
@@ -49,14 +56,23 @@ export class ColaboradoresService {
   }
 
   update(id: number, updateColaboradorDto: UpdateColaboradorDto) {
-    const index = this.findIndexById(id);
+    const data: Prisma.ColaboradoresUpdateInput = {
+      ...updateColaboradorDto,
+    };
+
+    return this.prisma.colaboradores.update({
+      where: { id },
+      data,
+    });
+
+    /*const index = this.findIndexById(id);
 
     this.data[index] = {
       ...this.data[index],
       ...updateColaboradorDto,
     };
 
-    return this.data[index];
+    return this.data[index];*/
   }
 
   remove(id: number) {
