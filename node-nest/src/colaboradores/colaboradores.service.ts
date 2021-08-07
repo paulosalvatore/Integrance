@@ -16,8 +16,8 @@ export class ColaboradoresService {
   private readonly data: Colaborador[] = [
     {
       id: 1,
-      nome: 'Paulo Salvatore',
-      idade: 99,
+      nome: 'Paulo Salvatore - Local',
+      idade: 10,
     },
   ];
 
@@ -33,13 +33,19 @@ export class ColaboradoresService {
   }
 
   findAll() {
-    return this.data.filter(Boolean);
+    return this.prisma.colaboradores.findMany();
+
+    // return this.data.filter(Boolean);
   }
 
   findOne(id: number) {
-    const index = this.findIndexById(id);
+    return this.prisma.colaboradores.findUnique({
+      where: { id },
+    });
 
-    return this.data[index];
+    // const index = this.findIndexById(id);
+
+    // return this.data[index];
   }
 
   update(id: number, updateColaboradorDto: UpdateColaboradorDto) {
