@@ -76,9 +76,13 @@ export class ColaboradoresService {
   }
 
   remove(id: number) {
-    const index = this.findIndexById(id);
+    return this.prisma.colaboradores.delete({
+      where: { id },
+    });
 
-    delete this.data[index];
+    /*const index = this.findIndexById(id);
+
+    delete this.data[index];*/
   }
 
   private findIndexById(id: number) {
