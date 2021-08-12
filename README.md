@@ -153,6 +153,40 @@ try {
 
 **Referência da API (estrutura dos erros):** https://www.prisma.io/docs/reference/api-reference/error-reference
 
+## Angular
+
+Instalar o Angular CLI:
+
+```bash
+npm install -g @angular/cli
+```
+
+Criar um projeto novo:
+
+```bash
+ng new my-app
+```
+
+Rodando um projeto angular:
+
+```bash
+npm start
+```
+
+```bash
+ng serve --open
+```
+
+```bash
+ng serve -o
+```
+
+```bash
+ng serve
+```
+
+**Porta default do servidor de desenvolvimento do Angular:** 4200
+
 ## Atalhos
 
 `Ctrl + .`: Auto complete no VSCode
