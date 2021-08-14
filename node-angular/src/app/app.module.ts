@@ -3,17 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ColaboradoresComponent } from './colaboradores/colaboradores.component';
-import { ColaboradorCardComponent } from './colaborador-card/colaborador-card.component';
+
 import { HttpClientModule } from '@angular/common/http';
+import { ColaboradoresModule } from './colaboradores/colaboradores.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ColaboradoresComponent,
-    ColaboradorCardComponent,
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+
+    HttpClientModule,
+
+    ColaboradoresModule,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
