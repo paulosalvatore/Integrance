@@ -14,4 +14,13 @@ model Colaboradores {
   id    Int    @id @default(autoincrement())
   nome  String
   idade Int?
+
+  empresas   Empresas? @relation(fields: [empresasId], references: [id])
+  empresasId Int?
+}
+
+model Empresas {
+  id            Int             @id @default(autoincrement())
+  razaoSocial   String          @unique
+  colaboradores Colaboradores[]
 }
