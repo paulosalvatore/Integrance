@@ -9,14 +9,7 @@ import { ColaboradoresModule } from './colaboradores/colaboradores.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-
-    HttpClientModule,
-
-    ColaboradoresModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, ColaboradoresModule],
   providers: [],
   bootstrap: [AppComponent],
 })
