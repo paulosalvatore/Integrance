@@ -7,7 +7,5 @@ import { ColaboradoresService } from './colaboradores.service';
   styleUrls: ['./colaboradores.component.sass'],
 })
 export class ColaboradoresComponent {
-  constructor(public readonly service: ColaboradoresService) {
-    console.log(service);
-  }
+  constructor(public readonly service: ColaboradoresService) {}
 }

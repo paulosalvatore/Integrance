@@ -1,5 +1,6 @@
-{{ service.colaboradores.length }}
-
-<app-colaborador-card
-  *ngFor="let item of service.colaboradores"
-></app-colaborador-card>
+<div class="colaboradores">
+  <app-colaborador-card
+    *ngFor="let item of service.colaboradores"
+    [colaborador]="item"
+  ></app-colaborador-card>
+</div>

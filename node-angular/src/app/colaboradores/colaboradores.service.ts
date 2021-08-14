@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-export type Colaboradores = {
+export type Colaborador = {
   id: number;
   nome: string;
   idade: number | null;
@@ -11,7 +11,7 @@ export type Colaboradores = {
   providedIn: 'root',
 })
 export class ColaboradoresService {
-  public colaboradores: Colaboradores[] = [];
+  public colaboradores: Colaborador[] = [];
 
   constructor(private readonly httpClient: HttpClient) {
     this.loadColaboradores();
@@ -27,7 +27,7 @@ export class ColaboradoresService {
     // console.log(observable);
 
     this.colaboradores = await this.httpClient
-      .get<Colaboradores[]>(urlApi)
+      .get<Colaborador[]>(urlApi)
       .toPromise();
   }
 }
