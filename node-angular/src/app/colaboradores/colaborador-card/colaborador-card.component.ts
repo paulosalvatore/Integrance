@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Colaborador } from '../colaboradores/colaboradores.service';
+import { Colaborador } from '../colaboradores.service';
 
 @Component({
   selector: 'app-colaborador-card',
