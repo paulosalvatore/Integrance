@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { ColaboradoresModule } from './colaboradores/colaboradores.module';
 import { EmpresasModule } from './empresas/empresas.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { EmpresasModule } from './empresas/empresas.module';
     AppRoutingModule,
     ColaboradoresModule,
     EmpresasModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
