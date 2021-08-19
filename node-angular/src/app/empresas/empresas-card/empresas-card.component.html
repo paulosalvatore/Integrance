@@ -1,1 +1,16 @@
-<app-card>Empresas</app-card>
+<app-card>
+  <div class="empresas-card">
+    <div class="empresas-card__title">
+      <h1>{{ empresa.razaoSocial }}</h1>
+    </div>
+
+    <div class="empresas-card__items">
+      <div
+        class="empresas-card__item"
+        *ngFor="let item of empresa.colaboradores"
+      >
+        {{ item.nome }}
+      </div>
+    </div>
+  </div>
+</app-card>

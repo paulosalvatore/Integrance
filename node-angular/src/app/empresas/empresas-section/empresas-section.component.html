@@ -1,3 +1,4 @@
 <div class="empresas-section">
-  <app-empresas-card></app-empresas-card>
+  <app-empresas-card *ngFor="let item of service.empresas" [empresa]="item">
+  </app-empresas-card>
 </div>
