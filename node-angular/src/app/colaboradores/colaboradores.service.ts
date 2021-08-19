@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ApiService } from '../api/api.service';
 import { Colaborador } from '../_domain/Colaborador';
 
 @Injectable({
@@ -8,18 +9,15 @@ import { Colaborador } from '../_domain/Colaborador';
 export class ColaboradoresService {
   public colaboradores: Colaborador[] = [];
 
-  constructor(private readonly httpClient: HttpClient) {
+  constructor(
+    private readonly httpClient: HttpClient,
+    private readonly apiService: ApiService
+  ) {
     this.loadColaboradores();
   }
 
   async loadColaboradores() {
-    const urlApi = 'http://localhost:3000/colaboradores';
-
-    //const promiseFetch = await fetch(urlApi).catch(console.warn);
-    //console.log({ promiseFetch });
-
-    // const observable = this.httpClient.get(urlApi);
-    // console.log(observable);
+    const urlApi = this.apiService.findAllColaboradores();
 
     this.colaboradores = await this.httpClient
       .get<Colaborador[]>(urlApi)
