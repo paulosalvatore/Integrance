@@ -1,11 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-export type Colaborador = {
-  id: number;
-  nome: string;
-  idade: number | null;
-};
+import { Colaborador } from '../_domain/Colaborador';
 
 @Injectable({
   providedIn: 'root',
