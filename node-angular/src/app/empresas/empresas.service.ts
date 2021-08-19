@@ -7,6 +7,8 @@ import { Empresa } from '../_domain/Empresa';
   providedIn: 'root',
 })
 export class EmpresasService {
+  private apiPrefix = 'empresas';
+
   public empresas: Empresa[] = [];
 
   constructor(
@@ -17,7 +19,7 @@ export class EmpresasService {
   }
 
   async loadEmpresas() {
-    const urlApi = this.apiService.findAllEmpresas();
+    const urlApi = this.apiService.findAll(this.apiPrefix);
 
     this.empresas = await this.httpClient.get<Empresa[]>(urlApi).toPromise();
   }

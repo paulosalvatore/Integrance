@@ -7,6 +7,8 @@ import { Colaborador } from '../_domain/Colaborador';
   providedIn: 'root',
 })
 export class ColaboradoresService {
+  private apiPrefix = 'colaboradores';
+
   public colaboradores: Colaborador[] = [];
 
   constructor(
@@ -17,7 +19,7 @@ export class ColaboradoresService {
   }
 
   async loadColaboradores() {
-    const urlApi = this.apiService.findAllColaboradores();
+    const urlApi = this.apiService.findAll(this.apiPrefix);
 
     this.colaboradores = await this.httpClient
       .get<Colaborador[]>(urlApi)

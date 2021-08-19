@@ -5,14 +5,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ApiService {
-  private colaboradoresPrefix = 'colaboradores';
+  findAll = (prefix: string) => `${environment.api}/${prefix}`;
 
-  private empresasPrefix = 'empresas';
-
-  findAllColaboradores = () => `${environment.api}/${this.colaboradoresPrefix}`;
-
-  findByIdColaboradores = (id: string) =>
-    `${environment.api}/${this.colaboradoresPrefix}/${id}`;
-
-  findAllEmpresas = () => `${environment.api}/${this.empresasPrefix}`;
+  findById = (prefix: string, id: string) =>
+    `${environment.api}/${prefix}/${id}`;
 }
